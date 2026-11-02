@@ -51,7 +51,7 @@ videosIntro: 'A partir de vuestra boda, crearemos una película llena de sentimi
     service3Copy: 'Fotografía y vídeo en una misma narrativa, cuidando la estética y la emoción de principio a fin.',
 
     contactEyebrow: 'Vuestra fecha empieza aquí',
-    contactTitle: 'Contadme<br><em>vuestro plan.</em>',
+    contactTitle: 'Contadnos<br><em>vuestro plan.</em>',
     contactCopy: '¿Os imagináis reviviendo vuestra boda dentro de veinte años? Me encantará conocer vuestra historia, qué estáis preparando y qué os gustaría recordar.',
     emailLink: 'O escribidme por email',
 servicesHeading: 'Nuestros servicios',
@@ -144,7 +144,7 @@ videosIntro: 'A partir del vostre casament, crearem una pel·lícula plena de se
     service3Copy: 'Fotografia i vídeo en una mateixa narrativa, tenint cura de l’estètica i l’emoció de principi a fi.',
 
     contactEyebrow: 'La vostra data comença aquí',
-    contactTitle: 'Expliqueu-me<br><em>el vostre pla.</em>',
+    contactTitle: 'Expliqueu-nos<br><em>el vostre pla.</em>',
     contactCopy: 'Us imagineu reviure el vostre casament d’aquí a vint anys? M’encantarà conèixer la vostra història, què esteu preparant i què us agradaria recordar.',
     emailLink: 'O escriviu-nos per correu electrònic',
 servicesHeading: 'Els nostres serveis',

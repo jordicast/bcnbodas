@@ -1,0 +1,2184 @@
+:root {
+  --site-primary: #303a32;
+  --site-secondary: #e8e2d8;
+  --site-background: #f7f5f0;
+  --site-on-primary: #ffffff;
+  --site-on-secondary: #303a32;
+  --site-on-background: #303a32;
+
+  --site-font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --site-font-heading: Georgia, 'Times New Roman', serif;
+
+  --menu-height: 70px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--site-background);
+  color: var(--site-on-background);
+  font-family: var(--site-font-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+#site-root {
+  min-height: 100vh;
+  overflow: visible;
+  background: var(--site-background);
+  color: var(--site-on-background);
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* 2. MENÚ SUPERIOR
+===================================================== */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  width: 100%;
+  min-height: 70px;
+  margin: 0;
+  padding: 18px 6vw;
+
+  background: #f7f5f0;
+  color: #303a32;
+  border-bottom: 1px solid rgba(48, 58, 50, .16);
+}
+
+.brand {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #303a32;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+.language-switch button {
+  padding: 5px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  opacity: .55;
+  cursor: pointer;
+}
+
+.language-switch button[aria-pressed="true"] {
+  opacity: 1;
+  border-bottom: 1px solid currentColor;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.8vw, 38px);
+
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.topbar .nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 0;
+  color: #303a32;
+  opacity: .75;
+  border-bottom: 1px solid transparent;
+  transition: opacity .2s ease, border-color .2s ease;
+}
+
+.topbar .nav a:hover {
+  opacity: 1;
+}
+
+.topbar .nav a.active {
+  opacity: 1;
+  border-bottom-color: currentColor;
+}
+
+.topbar .nav .nav-cta {
+  opacity: .75;
+  border-bottom: 1px solid transparent;
+}
+
+.topbar .nav .nav-cta.active {
+  opacity: 1;
+  border-bottom-color: currentColor;
+}
+
+.menu-toggle {
+  display: none;
+  padding: 7px 10px;
+  border: 0;
+  background: transparent;
+  color: #303a32;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+
+/* 3. PORTADA
+===================================================== */
+
+.hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #303a32;
+  color: #f7f5f0;
+}
+
+.hero-kicker,
+.hero-bottom {
+  display: none;
+}
+
+.hero-collage {
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 70px);
+  min-height: 420px;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #303a32;
+}
+
+/* Ordenador: dos fotografías a la vez */
+
+.collage-grid {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: 0;
+
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.collage-grid figure {
+  position: relative;
+  grid-column: auto;
+  grid-row: 1;
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #c9c2b7;
+}
+
+.collage-grid figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* Encuadre individual de las fotos de portada.
+   Cambia estos porcentajes si quieres desplazar el encuadre. */
+
+.collage-grid figure:nth-child(1) img {
+  object-position: center 20%;
+}
+
+.collage-grid figure:nth-child(2) img {
+  object-position: center 35%;
+}
+
+.collage-grid figure:nth-child(3) img {
+  object-position: center center;
+}
+
+.collage-grid figure:nth-child(4) img {
+  object-position: center 25%;
+}
+
+.collage-grid figure:nth-child(5) img {
+  object-position: center 55%;
+}
+
+.collage-grid figure:nth-child(6) img {
+  object-position: center center;
+}
+
+/* Sombra ligera sobre las fotografías */
+
+.collage-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(0, 0, 0, .12);
+  pointer-events: none;
+}
+
+/* Logo centrado */
+
+.center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 96%;
+  max-width: 1000px;
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  transform: translate(-50%, -50%);
+}
+
+.hero-logo {
+  display: block;
+  width: clamp(320px, 48vw, 680px);
+  max-width: 100%;
+  max-height: 40vh;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.image-label {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  z-index: 4;
+
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 8px #0008;
+}
+
+
+/* 4. SECCIONES Y TÍTULOS
+===================================================== */
+
+.section {
+  padding: 0px 6vw;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 50px;
+  margin-bottom: 38px;
+   margin-top: 40px;
+}
+
+.section-heading > div:first-child {
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  margin-bottom: 15px;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--site-font-heading);
+  font-weight: 400;
+}
+
+h1 {
+  max-width: 1000px;
+  margin: 0;
+  font-size: clamp(48px, 8.4vw, 126px);
+  line-height: .91;
+  letter-spacing: -.055em;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 70px);
+  line-height: 1;
+  letter-spacing: -.04em;
+}
+
+.section-intro {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  color: #697067;
+  font-family: inherit;
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 9px;
+
+  border-bottom: 1px solid currentColor;
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.text-link span {
+  font-size: 18px;
+}
+
+
+/* 5. GALERÍA PORTFOLIO
+===================================================== */
+
+/* Importante: la galería es horizontal, no una cuadrícula */
+
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+   overflow: visible;
+}
+.gallery {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.gallery figure {
+  flex-shrink: 0;
+}
+
+.gallery-arrow {
+  z-index: 20;
+  pointer-events: auto;
+}
+
+
+
+.gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery figure,
+.gallery figure:first-child,
+.gallery figure:nth-child(2),
+.gallery figure:nth-child(3) {
+  flex: 0 0 calc((100% - 36px) / 3);
+  width: calc((100% - 36px) / 3);
+  min-width: 0;
+  margin: 0;
+}
+
+.gallery img,
+.gallery figure:first-child img {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 38vw, 480px);
+  object-fit: cover;
+  background: #d5d0c6;
+}
+
+/* Encuadre individual de algunas fotos del portfolio */
+
+.gallery figure:nth-child(2) img {
+  object-position: 100% center;
+}
+
+.gallery figure:nth-child(3) img {
+  object-position: 10% center;
+}
+
+.gallery figure:nth-child(7) img,
+.gallery figure:nth-child(9) img {
+  object-position: center 10%;
+}
+
+.gallery figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 13px;
+
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+
+/* Flechas de la galería */
+
+.gallery-arrow {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+  background: rgba(25, 30, 25, .55);
+  color: #fff;
+
+  font-size: 23px;
+  cursor: pointer;
+  opacity: .9;
+
+  transition: opacity .2s ease, background .2s ease;
+
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gallery-arrow:hover {
+  opacity: 1;
+  background: rgba(25, 30, 25, .85);
+}
+
+.gallery-arrow i {
+  color: #fff;
+  pointer-events: none;
+}
+
+.gallery-arrow-left {
+  left: 14px;
+}
+
+.gallery-arrow-right {
+  right: 14px;
+}
+
+
+/* 6. MANIFIESTO
+===================================================== */
+
+.manifesto {
+  padding: 100px 12vw;
+  background: var(--site-primary);
+  color: var(--site-on-primary);
+  text-align: center;
+}
+
+.manifesto .eyebrow {
+  opacity: .7;
+}
+
+.manifesto h2 {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  font-size: clamp(38px, 6.3vw, 84px);
+}
+
+.manifesto p {
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.9;
+  opacity: .82;
+}
+
+
+/* 7. SERVICIOS
+===================================================== */
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  margin-top: 50px;
+
+}
+
+.service {
+  min-width: 0;
+  padding: 28px 22px 10px 0;
+}
+
+.service + .service {
+  padding-left: 22px;
+  border-left: 1px solid rgba(48, 58, 50, .2);
+}
+
+.service .num {
+  font-size: 10px;
+  letter-spacing: .18em;
+  opacity: .65;
+}
+
+.service h3 {
+  margin: 18px 0 10px;
+  font-size: 27px;
+}
+
+.service p {
+  max-width: 280px;
+  color: #697067;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+
+/* 8. VÍDEOS
+===================================================== */
+
+#videos {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  background: #f7f5f0;
+  color: #303a32;
+  scroll-margin-top: 90px;
+}
+
+#videos h2,
+#videos h3,
+#videos p,
+#videos .eyebrow,
+#videos .section-intro,
+#videos .video-card figcaption {
+  color: #e6ece7;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.video-card {
+  min-width: 0;
+  margin: 0;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #dedbd4;
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-card figcaption {
+  padding-top: 14px;
+  font: 20px var(--site-font-heading);
+}
+
+
+/* 9. PACKS DE FOTOGRAFÍA Y CINE
+===================================================== */
+
+.photo-packs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.photo-pack {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid rgba(48, 58, 50, .22);
+  background: rgba(255, 255, 255, .25);
+}
+
+.photo-pack h3 {
+  margin: 0 0 14px;
+  font-size: 26px;
+}
+
+.photo-pack p,
+.photo-pack li {
+  color: #697067;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.photo-pack ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+
+/* 10. OTROS SERVICIOS / FOTOMATÓN RETRO
+===================================================== */
+
+.festive-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 60px;
+
+  width: 100vw;
+  max-width: none;
+  margin-top: 60px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 55px max(6%, 24px);
+
+  background: var(--site-primary);
+  color: var(--site-on-primary);
+  text-align: justify;
+}
+
+.festive-content {
+  min-width: 0;
+}
+
+.festive-section h2,
+.festive-section p,
+.festive-section .eyebrow {
+  color: var(--site-on-primary);
+}
+
+.festive-intro {
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.festive-content p {
+  line-height: 1.8;
+}
+
+.festive-link {
+  color: var(--site-on-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.festive-images {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+}
+
+.festive-images .festive-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+  background: transparent;
+}
+
+.festive-images .festive-discount {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 0;
+  padding-left: 16px;
+
+  border-left: 2px solid var(--site-on-primary);
+  color: var(--site-on-primary);
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: justify;
+  overflow-wrap: anywhere;
+}
+
+
+/* 11. CONTACTO Y FORMULARIO
+===================================================== */
+
+#contacto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 60px;
+
+  padding: 35px 6vw 90px;
+  margin: 0;
+  background: var(--site-secondary);
+  color: var(--site-on-secondary);
+  scroll-margin-top: 90px;
+}
+
+#contacto > div,
+#contacto > form {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.contact h2 {
+  max-width: 520px;
+}
+
+.contact-copy {
+  max-width: 420px;
+  margin-top: 22px;
+  color: #62695f;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.contact-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 18px;
+
+  text-decoration: none;
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 18px;
+  min-width: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  min-width: 0;
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 0;
+
+  border: 0;
+  border-bottom: 1px solid rgba(48, 58, 50, .35);
+  border-radius: 0;
+
+  background: transparent;
+  color: var(--site-on-secondary);
+  outline-offset: 3px;
+
+  font-size: 14px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.submit {
+  grid-column: 1 / -1;
+  justify-self: start;
+
+  padding: 16px 23px;
+  border: 0;
+  background: var(--site-primary);
+  color: #fff;
+
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-note {
+  grid-column: 1 / -1;
+  color: #62695f;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+
+/* 12. PIE DE PÁGINA E INSTAGRAM
+===================================================== */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 6vw;
+
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+footer .socials {
+  display: flex;
+  gap: 20px;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+
+  background: var(--site-primary);
+  color: var(--site-on-primary);
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  color: inherit;
+  text-decoration: none;
+  transition: opacity .25s ease;
+}
+
+.instagram-link:hover {
+  opacity: .65;
+}
+
+.instagram-link svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.instagram-link svg circle:last-child {
+  fill: currentColor;
+  stroke: none;
+}
+
+.nav .instagram-link {
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.instagram-footer {
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+
+
+/* 13. BOTÓN FLOTANTE DE WHATSAPP
+===================================================== */
+
+.whatsapp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 200;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 5px 22px #0003;
+
+  font-size: 29px;
+  transition: transform .2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+}
+
+.whatsapp-float svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+
+/* =====================================================
+   14. AJUSTES PARA TABLETS Y MÓVILES
+===================================================== */
+
+@media screen and (max-width: 760px) {
+
+  /* MENÚ */
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    min-height: 60px;
+    padding: 10px 5vw;
+    gap: 10px;
+
+    flex-wrap: wrap;
+    overflow: visible;
+    background: #f7f5f0;
+    color: #303a32;
+  }
+
+  .brand {
+    max-width: calc(100% - 60px);
+    font-size: 11px;
+  }
+
+  .topbar .brand,
+  .topbar .brand span {
+    color: #303a32 !important;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: relative;
+    z-index: 10001;
+
+    margin-left: auto;
+    padding: 7px 10px;
+
+    color: #303a32 !important;
+    font-size: 28px;
+    pointer-events: auto;
+  }
+
+  .topbar .nav {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+
+    width: 100%;
+    padding: 25px 20px;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+
+    background: #f7f5f0;
+    color: #303a32;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .12);
+  }
+
+  .topbar .nav.open {
+    display: flex !important;
+  }
+
+  .topbar .nav a {
+    display: block;
+    padding: 5px;
+    color: #303a32 !important;
+  }
+
+  .nav .instagram-link {
+    margin: 10px 0;
+  }
+
+  .instagram-link svg {
+    width: 25px;
+    height: 25px;
+  }
+
+
+  /* PORTADA MÓVIL: UNA FOTO CADA VEZ */
+
+  .hero {
+    margin: 0;
+    padding: 0;
+    background: #000;
+  }
+
+  .hero-collage {
+    position: relative;
+    width: 100%;
+    height: calc(100svh - 60px);
+    min-height: 420px;
+    max-height: none;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .collage-grid {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .collage-grid figure {
+    position: absolute;
+    inset: 0;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+
+    transition: opacity .8s ease;
+  }
+
+  .collage-grid figure.mobile-active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  .collage-grid figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* Ajustes individuales del encuadre en móvil.
+     Puedes cambiar el segundo porcentaje para subir o bajar cada foto. */
+
+  .collage-grid figure:nth-child(1) img {
+    object-position: center 20%;
+  }
+
+  .collage-grid figure:nth-child(2) img {
+    object-position: center 35%;
+  }
+
+  .collage-grid figure:nth-child(3) img {
+    object-position: center center;
+  }
+
+  .collage-grid figure:nth-child(4) img {
+    object-position: center 25%;
+  }
+
+  .collage-grid figure:nth-child(5) img {
+    object-position: center 55%;
+  }
+
+  .collage-grid figure:nth-child(6) img {
+    object-position: center center;
+  }
+
+  .collage-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, .10),
+      rgba(0, 0, 0, .25)
+    );
+
+    pointer-events: none;
+  }
+
+  .center-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+
+    width: 92%;
+    max-width: 460px;
+    margin: 0;
+    padding: 0;
+
+    transform: translate(-50%, -50%);
+  }
+
+  .hero-logo {
+    display: block;
+    width: 76vw;
+    max-width: 420px;
+    max-height: 240px;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  .image-label {
+    right: 12px;
+    bottom: 12px;
+    font-size: 8px;
+  }
+
+
+  /* SECCIONES GENERALES */
+
+  .section {
+    padding: 68px 5vw;
+  }
+
+  .section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 26px;
+  }
+
+  .section-intro {
+    width: 100%;
+    max-width: none;
+    margin-top: 0;
+    font-size: 17px;
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+
+  /* PORTFOLIO: DESLIZAMIENTO HORIZONTAL */
+
+  #portfolio {
+    padding-bottom: 35px;
+  }
+
+  .gallery {
+    gap: 12px;
+    padding-bottom: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    touch-action: pan-x;
+  }
+
+  .gallery figure,
+  .gallery figure:first-child,
+  .gallery figure:nth-child(2),
+  .gallery figure:nth-child(3) {
+    flex: 0 0 82%;
+    width: 82%;
+    margin: 0;
+  }
+
+  .gallery img,
+  .gallery figure:first-child img {
+    width: 100%;
+    height: 105vw;
+    min-height: 280px;
+    max-height: 480px;
+    object-fit: cover;
+  }
+
+  .gallery-arrow {
+    top: 38%;
+    width: 40px;
+    height: 40px;
+    font-size: 19px;
+  }
+
+  .gallery-arrow-left {
+    left: 8px;
+  }
+
+  .gallery-arrow-right {
+    right: 8px;
+  }
+
+
+  /* VÍDEOS */
+
+  #videos {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background: #f7f5f0 !important;
+    color: #303a32 !important;
+  }
+
+  #videos h2,
+  #videos h3,
+  #videos p,
+  #videos .eyebrow,
+  #videos .section-intro,
+  #videos .video-card figcaption {
+    color: #303a32 !important;
+  }
+
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .video-card figcaption {
+    font-size: 19px;
+  }
+
+
+  /* SERVICIOS */
+
+  #servicios {
+    padding-top: 50px !important;
+  }
+
+  #servicios .section-heading {
+    margin-bottom: 12px;
+    padding-bottom: 0;
+  }
+
+  #servicios .services-grid {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+    margin-top: 30px;
+  }
+
+  .service,
+  .service + .service {
+    padding: 23px 0;
+    border-top: 1px solid rgba(255, 255, 255, .2) !important;
+    border-left: 0;
+  }
+
+  .service h3 {
+    margin: 12px 0 7px;
+  }
+
+
+  /* PACKS */
+
+  .photo-packs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .photo-pack {
+    padding: 22px;
+  }
+
+
+  /* OTROS SERVICIOS: FOTOMATÓN Y VÍDEO 360 */
+
+  .festive-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 25px;
+
+    margin-top: 40px;
+    padding: 35px 5vw;
+
+    background: #d8d1c4 !important;
+    color: #242922 !important;
+    text-align: justify;
+  }
+
+  .festive-section h2,
+  .festive-section p,
+  .festive-section .eyebrow,
+  .festive-section .festive-link {
+    color: #242922 !important;
+  }
+
+  .festive-intro {
+    font-size: 17px;
+  }
+
+  .festive-content p {
+    text-align: justify;
+  }
+
+  .festive-images {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 25px;
+  }
+
+  .festive-images .festive-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+
+  .festive-images .festive-discount {
+    width: 75%;
+    max-width: 300px;
+    margin: 5px auto 0;
+    padding-left: 12px;
+
+    border-left: 2px solid #242922;
+    color: #242922;
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+
+  /* CONTACTO */
+
+  #contacto {
+    grid-template-columns: 1fr;
+    gap: 35px;
+
+    padding: 25px 5vw 68px;
+
+    background: #343a32 !important;
+    color: #f2eee7 !important;
+  }
+
+  #contacto h2,
+  #contacto p,
+  #contacto label,
+  #contacto .contact-copy {
+    color: #f2eee7 !important;
+  }
+
+  .contact-copy {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .contact-action {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .field.full,
+  .submit,
+  .form-note {
+    grid-column: 1;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    background: transparent;
+    color: #f2eee7 !important;
+    border-color: #ffffff55;
+    -webkit-text-fill-color: #f2eee7;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #c0c4ba;
+    opacity: 1;
+  }
+
+  .submit {
+    background: #d8d1c4;
+    color: #242922 !important;
+  }
+
+  .form-note {
+    color: #c0c4ba;
+  }
+
+
+  /* PIE DE PÁGINA */
+
+  footer {
+    flex-direction: column;
+    padding: 22px 5vw;
+    font-size: 9px;
+  }
+
+  .site-footer {
+    background: #d8d1c4;
+    color: #242922;
+  }
+
+  .site-footer a {
+    color: #242922;
+  }
+
+
+  /* WHATSAPP */
+
+  .whatsapp-float {
+    right: 15px;
+    bottom: 15px;
+    width: 55px;
+    height: 55px;
+  }
+
+}
+
+
+/* 15. MÓVILES MUY PEQUEÑOS
+===================================================== */
+
+@media screen and (max-width: 380px) {
+
+  .hero-collage {
+    min-height: 400px;
+  }
+
+  .hero-logo {
+    width: 76vw;
+    max-width: 300px;
+    max-height: 180px;
+  }
+
+  .brand {
+    font-size: 10px;
+    letter-spacing: .12em;
+  }
+
+  .gallery figure,
+  .gallery figure:first-child,
+  .gallery figure:nth-child(2),
+  .gallery figure:nth-child(3) {
+    flex-basis: 88%;
+    width: 88%;
+  }
+
+  .festive-images {
+    gap: 20px;
+  }
+
+  .festive-images .festive-discount {
+    width: 85%;
+    font-size: 13px;
+  }
+
+}
+
+
+/* 16. PANTALLAS GRANDES
+===================================================== */
+
+@media screen and (min-width: 1500px) {
+
+  .hero-collage {
+    height: calc(100vh - 70px);
+  }
+
+  .section {
+    padding-left: max(6vw, calc((100vw - 1500px) / 2));
+    padding-right: max(6vw, calc((100vw - 1500px) / 2));
+  }
+
+}
+ /* Cajas de fotografía y cine */
+  .photo-pack {
+    background: #343a32 !important;
+    border-color: #ffffff30 !important;
+  }
+
+  .photo-pack h3,
+  .photo-pack p,
+  .photo-pack li {
+    color: #f2eee7 !important;
+  }
+
+  /* Servicios */
+  .services {
+    border-color: #ffffff30 !important;
+  }
+
+  .service,
+  .service + .service {
+    border-color: #ffffff30 !important;
+  }
+
+  /* Otros servicios: conservar su fondo verde claro */
+  .festive-section {
+    background-color: #d8d1c4 !important;
+    color: #242922 !important;
+  }
+
+  .festive-section h2,
+  .festive-section p,
+  .festive-section .eyebrow,
+  .festive-section .festive-link {
+    color: #242922 !important;
+  }
+
+  .festive-section .festive-discount {
+    border-left-color: #242922 !important;
+  }
+
+  /* LÍNEAS DIVISORIAS ENTRE SERVICIOS */
+
+.services {
+  border-top: 1px solid rgba(48, 58, 50, .25) !important;
+}
+
+.service {
+  border-top: none !important;
+
+  border-left: none !important;
+}
+
+.service + .service {
+  border-left: 1px solid rgba(48, 58, 50, .25) !important;
+}
+
+/* PORTFOLIO: FONDO VERDE Y MENOS ESPACIO */
+
+#portfolio {
+  padding: 10px 6vw !important;
+  background: #f2eee7 !important;
+  color: #343a32 !important;
+}
+
+
+#videos {
+  padding: 10px 6vw !important;
+  background: #343a32 !important;
+  color: #f2eee7 !important;
+}
+/* Textos del portfolio en color claro */
+#portfolio h2,
+#portfolio h3,
+#portfolio p,
+#portfolio .eyebrow,
+#portfolio .section-intro,
+#portfolio .gallery figcaption {
+  color: #343a32 !important;
+}
+
+/* ALINEAR INTRO DEL PORTFOLIO CON EL TÍTULO */
+
+#portfolio .section-heading {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+#portfolio .section-intro {
+  margin-top: 25px !important;
+}
+
+#videos .section-intro {
+  margin-top: 25px !important;
+}
+
+
+#servicios {
+  padding-top: 40px !important;
+     border-top: 1px solid rgba(48, 58, 50, .25) !important;
+}
+
+#servicios .section-heading {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.gallery {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  width: 100%;
+}
+
+.gallery figure {
+  flex-shrink: 0 !important;
+}
+
+.gallery-arrow {
+  z-index: 20 !important;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.gallery-arrow {
+  position: absolute;
+  z-index: 100;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.gallery-arrow-left {
+  left: 15px;
+}
+
+.gallery-arrow-right {
+  right: 15px;
+}
+
+
+
+
+
+
+/* ==========================================
+   FORZAR FUNCIONAMIENTO DE FLECHAS GALERÍA
+   ========================================== */
+
+/* Contenedor principal */
+.gallery-carousel {
+    position: relative !important;
+    width: 100% !important;
+    overflow: visible !important;
+    isolation: isolate !important;
+}
+
+/* Galería horizontal */
+#wedding-gallery {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    scroll-behavior: auto !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+        gap: 12px;
+
+}
+
+#wedding-gallery::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* Fotografías */
+#wedding-gallery figure {
+    flex: 0 0 33.333% !important;
+    min-width: 33.333% !important;
+    position: relative !important;
+}
+
+/* Flechas */
+.gallery-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 99999 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 55px !important;
+    height: 55px !important;
+
+    background: rgba(48, 58, 50, 0.75) !important;
+    border: 1px solid rgba(255,255,255,0.8) !important;
+    border-radius: 50% !important;
+
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+
+    transition: background 0.3s ease !important;
+}
+
+/* Posición */
+.gallery-arrow-left {
+    left: 15px !important;
+    right: auto !important;
+}
+
+.gallery-arrow-right {
+    right: 15px !important;
+    left: auto !important;
+}
+
+/* Iconos */
+.gallery-arrow i {
+    color: #ffffff !important;
+    font-size: 20px !important;
+    pointer-events: none !important;
+}
+
+/* Efecto al pasar el cursor */
+.gallery-arrow:hover {
+    background: #303a32 !important;
+    transform: translateY(-50%) scale(1.1) !important;
+}
+
+/* Móvil */
+@media (max-width: 760px) {
+    .gallery-arrow {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .gallery-arrow-left {
+        left: 8px !important;
+    }
+
+    .gallery-arrow-right {
+        right: 8px !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   AJUSTES DEFINITIVOS PARA MÓVIL BCN BODAS
+===================================================== */
+
+/* VÍDEOS: TEXTO SIEMPRE BLANCO, EN CUALQUIER MODO */
+
+#videos h2,
+#videos h3,
+#videos p,
+#videos .eyebrow,
+#videos .section-intro,
+#videos .video-card figcaption {
+    color: #ffffff !important;
+}
+
+
+/* =====================================================
+   AJUSTES EXCLUSIVOS PARA MÓVILES
+===================================================== */
+
+@media screen and (max-width: 760px) {
+
+    /* 1. TEXTOS: OCUPAR TODO EL ANCHO DISPONIBLE */
+
+    .section-heading {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .section-heading > div:first-child {
+        width: 100%;
+    }
+
+    .section-intro,
+    .manifesto p,
+    .service p,
+    .photo-pack p,
+    .photo-pack li,
+    .festive-content p,
+    .contact-copy {
+        width: 100% !important;
+        max-width: none !important;
+        text-align: justify !important;
+    }
+
+
+    /* 2. GALERÍA: UNA FOTO A TODO EL ANCHO DE PANTALLA */
+
+    #portfolio {
+        padding-left: 5vw !important;
+        padding-right: 5vw !important;
+    }
+
+    #portfolio .gallery-carousel {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: -5vw !important;
+        margin-right: -5vw !important;
+        overflow: visible !important;
+    }
+
+    #wedding-gallery {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-behavior: smooth !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+    }
+
+    #wedding-gallery figure,
+    #wedding-gallery figure:first-child,
+    #wedding-gallery figure:nth-child(2),
+    #wedding-gallery figure:nth-child(3) {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        margin: 0 !important;
+        scroll-snap-align: start;
+    }
+
+    #wedding-gallery figure img {
+        display: block;
+        width: 100% !important;
+        height: 105vw !important;
+        min-height: 300px;
+        max-height: 520px;
+        object-fit: cover;
+    }
+
+    .gallery-arrow {
+        top: 50% !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+
+    /* 3. VÍDEOS: FONDO VERDE Y TEXTO BLANCO */
+
+    #videos {
+        background: #343a32 !important;
+        color: #ffffff !important;
+    }
+
+    #videos h2,
+    #videos h3,
+    #videos p,
+    #videos .eyebrow,
+    #videos .section-intro,
+    #videos .video-card figcaption {
+        color: #ffffff !important;
+    }
+
+
+    /* 4. SERVICIOS: LÍNEAS HORIZONTALES ENTRE PACKS */
+
+    .services {
+        grid-template-columns: 1fr !important;
+        margin-top: 8px !important;
+        border-top: 1px solid #ffffff40 !important;
+    }
+
+    .service {
+        border-left: 0 !important;
+        border-top: 0 !important;
+        padding: 22px 0 !important;
+        border-top: 1px solid rgba(48, 58, 50, .25) !important;
+    }
+
+    .service + .service {
+        border-left: 0 !important;
+        border-top: 1px solid #ffffff40 !important;
+    }
+
+
+    /* 5. REDUCIR ESPACIO ENTRE TÍTULO Y PRIMER PACK */
+
+    #servicios {
+        padding-top: 15px !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
+           border-top: 1px solid rgba(48, 58, 50, .25) !important;
+    }
+
+    #servicios .section-heading {
+        margin-bottom: 8px !important;
+    }
+
+    #servicios .services {
+        margin-top: 8px !important;
+           border-top: 1px solid rgba(48, 58, 50, .25) !important;
+    }
+
+    .photo-packs {
+        margin-top: 12px !important;
+        gap: 12px !important;
+    }
+
+
+    /* 6. ELIMINAR ESPACIO BLANCO ANTES DEL CONTACTO */
+
+    .festive-section {
+        margin-bottom: 0 !important;
+    }
+
+    #contacto {
+        margin-top: 0 !important;
+    }
+
+}
+/* PORTFOLIO: AJUSTES SOLO PARA MÓVIL */
+@media screen and (max-width: 760px) {
+
+    #portfolio .section-heading {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+    }
+
+    #portfolio .section-intro {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: #303a32 !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        text-align: justify !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+}
+
+/* PORTADA: AJUSTES EXCLUSIVOS PARA MÓVIL */
+@media screen and (max-width: 760px) {
+
+    .collage-grid {
+        position: relative !important;
+        width: 100% !important;
+        height: 100svh !important;
+        min-height: 600px !important;
+        overflow: hidden !important;
+        background: transparent !important;
+    }
+
+    .collage-grid figure {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+    }
+
+    .collage-grid figure img {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+            transition: none !important;
+        animation: none !important;
+        transform: none !important
+    }
+}
+
+
+
+/* CAMBIO DIRECTO DE FOTOGRAFÍAS */
+.collage-grid figure,
+.collage-grid figure img {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* SOLO MÓVIL */
+@media screen and (max-width: 760px) {
+    .collage-grid {
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .collage-grid figure {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+/* PORTADA ORDENADOR: SIEMPRE DOS COLUMNAS */
+@media screen and (min-width: 761px) {
+
+    .collage-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        grid-template-rows: 1fr !important;
+        overflow: hidden !important;
+    }
+
+    /* Fotos 1, 3, 5... a la izquierda */
+    .collage-grid figure:nth-child(odd) {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+    }
+
+    /* Fotos 2, 4, 6... a la derecha */
+    .collage-grid figure:nth-child(even) {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+    }
+
+}
+
+
+/* SELECTOR DE IDIOMA ES / CAT */
+
+.topbar {
+    position: relative;
+}
+
+.language-switch {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    z-index: 20;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    padding: 5px 2px;
+    color: inherit;
+    opacity: 0.55;
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.lang-btn:hover {
+    opacity: 1;
+}
+
+.lang-btn.active {
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* Ajustes para móvil */
+@media (max-width: 760px) {
+  .language-switch {
+    position: absolute;
+    left: auto;
+    right: 65px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .brand {
+    font-size: 12px;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 21;
+  }
+}
+
+@media (max-width: 760px) {
+  .photo-pack {
+    border-bottom: 1px solid #303a32 !important;
+  }
+
+  .photo-pack:last-child {
+    border-bottom: none !important;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .service + .service {
+    border-top: 1px solid #303a32 !important;
+  }
+}

@@ -356,18 +356,9 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
-const contactForm = document.getElementById('contact-form');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', event => {
-    event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
 
-    const subject = encodeURIComponent(
-      (document.documentElement.lang === 'ca' ? 'Consulta de casament — ' : 'Consulta de boda — ') +
-      (data.get('nombres') || 'Nueva pareja')
-    );
 
     const body = encodeURIComponent(
       (document.documentElement.lang === 'ca' ? 'Noms: ' : 'Nombres: ') + data.get('nombres') +

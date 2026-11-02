@@ -105,7 +105,6 @@ discountCopy: 'si contratáis alguno de nuestros servicios audiovisuales de foto
     optionUnsure: 'Lo queremos hablar',
     formMessage: 'Contadnos un poco más',
     formSubmit: 'Enviar email ↗',
-    formNote: 'Este formulario abrirá vuestro programa de correo con el mensaje preparado. Para recibir consultas directamente, conecta después un servicio de formularios.',
     backTop: 'Volver arriba ↑'
   },
 
@@ -199,7 +198,6 @@ discountCopy: 'si contracteu algun dels nostres serveis audiovisuals de fotograf
     optionUnsure: 'En volem parlar',
     formMessage: 'Expliqueu-me una mica més',
     formSubmit: 'Enviar correu ↗',
-    formNote: 'Aquest formulari obrirà el vostre programa de correu amb el missatge preparat. Per rebre consultes directament, més endavant podeu connectar-hi un servei de formularis.',
     backTop: 'Tornar a dalt ↑'
   }
 };

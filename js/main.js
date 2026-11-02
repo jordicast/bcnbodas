@@ -358,8 +358,6 @@ if (yearElement) {
 
 
 
-
-
     const body = encodeURIComponent(
       (document.documentElement.lang === 'ca' ? 'Noms: ' : 'Nombres: ') + data.get('nombres') +
       '\nEmail: ' + data.get('email') +
@@ -371,7 +369,7 @@ if (yearElement) {
     );
 
     window.location.href = 'mailto:bcnbodasmail@gmail.com?subject=' + subject + '&body=' + body;
-
+ 
 
 /* Marcar en el menú la sección que está visible */
 document.addEventListener("DOMContentLoaded", () => {
